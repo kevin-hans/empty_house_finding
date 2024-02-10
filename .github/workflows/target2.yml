@@ -84,6 +84,8 @@ jobs:
           #   echo "AVAILABLE_HOUSE_FOUND=YES" >> $GITHUB_ENV
           # fi
           echo "----------------------------------5555"
+          echo "${{ github.event.inputs.houseName }}"
+          echo "${{ github.event.inputs.homePage }}"
 
       - name: Create an Issue when found.
         if: ${{ env.AVAILABLE_HOUSE_FOUND == 'YES' }} 

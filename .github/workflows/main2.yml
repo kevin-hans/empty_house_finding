@@ -55,6 +55,10 @@ jobs:
             HOUSE_NAME=$(echo $i | jq -r '.houseName')
             GREP_KEY=$(echo $i | jq -r '.grepKey')
             HOME_PAGE=$(echo $i | jq -r '.homePage')
+
+            echo "----------------------------------"
+            echo "HOUSE_NAME:${HOUSE_NAME}"
+            echo "HOME_PAGE:${HOME_PAGE}"
             
             # Use GitHub API to trigger the workflow_dispatch event
             curl \
