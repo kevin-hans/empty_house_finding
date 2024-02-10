@@ -41,8 +41,10 @@ jobs:
     name: Call Callee Workflow
     uses: ./.github/workflows/target.yml
     with:
-      param1: "Hello"
-      param2: "World"
+      name: "John Doe"
+      age: 30
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
 
 
   # call_reusable_workflow:
