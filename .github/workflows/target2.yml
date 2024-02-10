@@ -67,21 +67,21 @@ jobs:
           echo "----------------------------------4444"
           
           if echo "$response2" | grep -q "${{ github.event.inputs.grepKey }}"; then
-            echo "AVAILABLE_HOUSE_FOUND=YES"
-            echo "AVAILABLE_HOUSE_FOUND=YES" >> $GITHUB_ENV
-          else
             echo "AVAILABLE_HOUSE_FOUND=NO"
             echo "AVAILABLE_HOUSE_FOUND=NO" >> $GITHUB_ENV
+          else
+            echo "AVAILABLE_HOUSE_FOUND=YES"
+            echo "AVAILABLE_HOUSE_FOUND=YES" >> $GITHUB_ENV
           fi
 
           # echo "$response2" | grep -q "${{ github.event.inputs.grepKey }}"
           # # Check the exit status of grep to determine if the word was found
           # if [ $? -eq 0 ]; then
-          #   echo "AVAILABLE_HOUSE_FOUND=NO"
-          #   echo "AVAILABLE_HOUSE_FOUND=NO" >> $GITHUB_ENV
-          # else
           #   echo "AVAILABLE_HOUSE_FOUND=YES"
           #   echo "AVAILABLE_HOUSE_FOUND=YES" >> $GITHUB_ENV
+          # else
+          #   echo "AVAILABLE_HOUSE_FOUND=NO"
+          #   echo "AVAILABLE_HOUSE_FOUND=NO" >> $GITHUB_ENV
           # fi
           echo "----------------------------------5555"
           echo "${{ github.event.inputs.houseName }}"
@@ -100,6 +100,6 @@ jobs:
           
       - name: just log when not found.
         if: ${{ env.AVAILABLE_HOUSE_FOUND == 'NO' }} 
-        run: echo "No house found "
+        run: echo "${{ github.event.inputs.houseName }}に空き家ございません。"
 
           
