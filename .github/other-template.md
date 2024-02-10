@@ -1,4 +1,4 @@
-title:申込できる賃貸部屋を在りました！{{ date | date('dddd, MMMM Do') }}
+title: 申込できる賃貸部屋を在りました！{{ date | date('dddd, MMMM Do') }}
 labels: new-found
 ---
 早くチェックしてください。
