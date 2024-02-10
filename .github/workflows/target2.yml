@@ -20,6 +20,9 @@ on:
       grepKeyExcluded:
         required: false
         description: 'Grep Key excluded'
+      homePage:
+        required: true
+        description: 'Grep Key'
 
 permissions:
   issues: write  # This line ensures the workflow has permission to create issues
@@ -89,6 +92,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           filename: .github/other-template.md
+          houseName: "${{ github.event.inputs.houseName }}"
+          homePage: "${{ github.event.inputs.homePage }}"
           
       - name: just log when not found.
         if: ${{ env.AVAILABLE_HOUSE_FOUND == 'NO' }} 
