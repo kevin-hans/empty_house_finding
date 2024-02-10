@@ -26,7 +26,7 @@ jobs:
           # Check if outside 8 AM to 10 PM UTC range
           if [ $HOUR -lt 8 ] || [ $HOUR -gt 22 ]; then
             echo "Current time is outside the schedule range. Exiting..."
-            exit 0
+            # exit 0
           fi
           
           # If within range, the steps below will run
