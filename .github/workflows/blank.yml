@@ -55,30 +55,13 @@ jobs:
           echo "$response2" | grep -q "空室はございませんでした"
           # Check the exit status of grep to determine if the word was found
           if [ $? -eq 0 ]; then
-            # echo "The word 'Success' was found in the response."
-            # You can add steps here to handle the success case
-            echo "AVAILABLE_HOUSE_FOUND=YES" >> $GITHUB_ENV
-          else
-            # echo "The word 'Success' was not found in the response."
-            # Optional: Add steps here to handle the failure case
             echo "AVAILABLE_HOUSE_FOUND=NO" >> $GITHUB_ENV
+          else
+            echo "AVAILABLE_HOUSE_FOUND=YES" >> $GITHUB_ENV
           fi
-
-          # ls -al
-          # cat response.txt
-          # echo "::set-output name=body::$(<response.txt)"
   
-      # - name: Check response
-      #   run: |
-      #     if [[ "${{ steps.curl_request.outputs.status_code }}" == "200" ]]; then
-      #       echo "Request was successful"
-      #       echo "Response body: ${{ steps.curl_request.outputs.body }}"
-      #     else
-      #       echo "Request failed with status ${{ steps.curl_request.outputs.status_code }}"
-      #     fi
 
-          
-      - name: Create an Issue
+      - name: Create an Issue when found.
         if: ${{ env.AVAILABLE_HOUSE_FOUND == 'NO' }} 
         uses: JasonEtco/create-an-issue@v2
         env:
@@ -86,7 +69,7 @@ jobs:
         with:
           filename: .github/other-template.md
           
-      - name: Create an Issue
+      - name: just log when not found.
         if: ${{ env.AVAILABLE_HOUSE_FOUND == 'YES' }} 
         run: echo "No house found "
 
