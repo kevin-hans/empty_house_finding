@@ -39,6 +39,24 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+
+      - name: Make request and capture response
+        id: curl_request
+        run: 
+          response=$(curl -s -o response.txt -w "%{http_code}" curl --location 'https://jhomes.to-kousya.or.jp/search/jkknet/service/akiyaJyokenDirect' --header 'Content-Type: application/x-www-form-urlencoded' --data-urlencode 'redirect=true' --data-urlencode 'url=https%3A%2F%2Fjhomes.to-kousya.or.jp%2Fsearch%2Fjkknet%2Fservice%2FakiyaJyokenDirect' --data-urlencode 'sen_flg=1' --data-urlencode 'jutaku_name=30B330FC30B730E430CF30A430E030DF30C930EA30E830F330C130E830A630E1')
+          echo "::set-output name=status_code::$response"
+          cat response.txt
+          echo "::set-output name=body::$(<response.txt)"
+  
+      - name: Check response
+        run: |
+          if [[ "${{ steps.curl_request.outputs.status_code }}" == "200" ]]; then
+            echo "Request was successful"
+            echo "Response body: ${{ steps.curl_request.outputs.body }}"
+          else
+            echo "Request failed with status ${{ steps.curl_request.outputs.status_code }}"
+          fi
+
           
       - name: Create an Issue
         uses: JasonEtco/create-an-issue@v2
