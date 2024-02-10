@@ -1,0 +1,19 @@
+# callee-workflow.yml
+name: Callee Workflow
+on: workflow_call
+inputs:
+  param1:
+    required: true
+    type: string
+  param2:
+    required: true
+    type: string
+
+jobs:
+  receive-and-process:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Print Parameters
+      run: |
+        echo "Parameter 1: ${{ inputs.param1 }}"
+        echo "Parameter 2: ${{ inputs.param2 }}"

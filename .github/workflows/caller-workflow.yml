@@ -1,0 +1,14 @@
+# caller-workflow.yml
+name: Caller Workflow
+on:
+  workflow_dispatch:
+
+jobs:
+  call-callee:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Call Callee Workflow
+      uses: ./.github/workflows/callee-workflow.yml
+      with:
+        param1: "Hello"
+        param2: "World"
