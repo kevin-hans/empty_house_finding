@@ -2,14 +2,19 @@
 
 name: check single house 
 
-on: workflow_call
-inputs:
-  param1:
-    required: true
-    type: string
-  param2:
-    required: true
-    type: string
+on:
+  workflow_call:
+    inputs:
+      name:
+        required: true
+        type: string
+      age:
+        required: false
+        type: number
+        default: 18
+    secrets:
+      token:
+        required: true
 
 permissions:
   issues: write  # This line ensures the workflow has permission to create issues
