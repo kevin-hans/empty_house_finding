@@ -13,11 +13,11 @@ permissions:
   issues: write  # This line ensures the workflow has permission to create issues
 
 jobs:
-  call-callee:
+  check-time-range:
     runs-on: ubuntu-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      # - uses: actions/checkout@v3
       - name: Check time range
         run: |
           # Get the current hour in UTC
@@ -36,3 +36,12 @@ jobs:
       #   with:
       #     param1: "Hello"
       #     param2: "World"
+
+  call_reusable_workflow:
+    uses: ./.github/workflows/target.yml@main
+    with:
+      param1: "Hello"
+      param2: "World"
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+
