@@ -1,13 +1,6 @@
 [
     {
         "type": "jkk",
-        "houseName": "墨田区コーシャハイム緑四丁目",
-        "encodedHouseName": "30B330FC30B730E430CF30A430E030DF30C930EA30E830F330C130E830A630E1",
-        "grepKey": "空室はございませんでした",
-        "grepKeyExcluded": "1LDK"
-    },
-    {
-        "type": "jkk",
         "houseName": "世田谷区コーシャハイム芦花公園",
         "encodedHouseName": "30B330FC30B730E330CF30A430E030ED30AB30B330A630A830F3",
         "grepKey": "空室はございませんでした",

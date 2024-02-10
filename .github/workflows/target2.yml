@@ -65,11 +65,13 @@ jobs:
           echo "$response2" | grep -q "${{ github.event.inputs.grepKey }}"
           # Check the exit status of grep to determine if the word was found
           if [ $? -eq 0 ]; then
+            echo "AVAILABLE_HOUSE_FOUND=NO"
             echo "AVAILABLE_HOUSE_FOUND=NO" >> $GITHUB_ENV
           else
+            echo "AVAILABLE_HOUSE_FOUND=YES"
             echo "AVAILABLE_HOUSE_FOUND=YES" >> $GITHUB_ENV
           fi
-  
+          echo "----------------------------------5555"
 
       - name: Create an Issue when found.
         if: ${{ env.AVAILABLE_HOUSE_FOUND == 'YES' }} 
