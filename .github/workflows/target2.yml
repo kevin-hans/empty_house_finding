@@ -96,11 +96,6 @@ jobs:
           HOME_PAGE: "${{ github.event.inputs.homePage }}"
         with:
           filename: .github/other-template.md
-          data: |
-            {
-              "houseName": "${{ github.event.inputs.houseName }}",
-              "homePage": "${{ github.event.inputs.homePage }}"
-            }
 
           
       - name: just log when not found.
