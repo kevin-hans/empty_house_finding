@@ -22,7 +22,7 @@ on:
         description: 'Grep Key excluded'
       homePage:
         required: true
-        description: 'Grep Key'
+        description: 'home page'
 
 permissions:
   issues: write  # This line ensures the workflow has permission to create issues
@@ -94,8 +94,8 @@ jobs:
           filename: .github/other-template.md
           data: |
             {
-              houseName: "${{ github.event.inputs.houseName }}",
-              homePage: "${{ github.event.inputs.homePage }}"
+              "houseName": "${{ github.event.inputs.houseName }}",
+              "homePage": "${{ github.event.inputs.homePage }}"
             }
 
           
