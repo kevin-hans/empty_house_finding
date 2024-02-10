@@ -4,7 +4,10 @@ assignees: kevin-hans
 labels: new-found
 ---
 
-**${{houseName}}**
+**{{houseName}}**
+
+**{{ env.HOUSE_NAME }}**
+**{{ env.HOME_PAGE }}**
 
 [**物件HP**](${{homePage}})
 

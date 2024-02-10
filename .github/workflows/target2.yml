@@ -92,6 +92,8 @@ jobs:
         uses: JasonEtco/create-an-issue@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HOUSE_NAME: "${{ github.event.inputs.houseName }}",
+          HOME_PAGE: "${{ github.event.inputs.homePage }}",
         with:
           filename: .github/other-template.md
           data: |
