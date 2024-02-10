@@ -25,7 +25,7 @@ permissions:
   issues: write  # This line ensures the workflow has permission to create issues
   actions: write
   contents: read
-  
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -60,6 +60,8 @@ jobs:
           echo "----------------------------------2222"
           echo "$response2"
           echo "----------------------------------3333"
+          echo "${{ github.event.inputs.grepKey }}"
+          echo "----------------------------------4444"
           echo "$response2" | grep -q "${{ github.event.inputs.grepKey }}"
           # Check the exit status of grep to determine if the word was found
           if [ $? -eq 0 ]; then
@@ -70,7 +72,7 @@ jobs:
   
 
       - name: Create an Issue when found.
-        if: ${{ env.AVAILABLE_HOUSE_FOUND == 'NO' }} 
+        if: ${{ env.AVAILABLE_HOUSE_FOUND == 'YES' }} 
         uses: JasonEtco/create-an-issue@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -78,7 +80,7 @@ jobs:
           filename: .github/other-template.md
           
       - name: just log when not found.
-        if: ${{ env.AVAILABLE_HOUSE_FOUND == 'YES' }} 
+        if: ${{ env.AVAILABLE_HOUSE_FOUND == 'NO' }} 
         run: echo "No house found "
 
           
