@@ -11,7 +11,9 @@ on:
 
 permissions:
   issues: write  # This line ensures the workflow has permission to create issues
-
+  actions: write
+  contents: read
+  
 jobs:
   check-time-range:
     runs-on: ubuntu-latest

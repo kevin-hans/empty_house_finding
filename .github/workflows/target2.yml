@@ -23,7 +23,9 @@ on:
 
 permissions:
   issues: write  # This line ensures the workflow has permission to create issues
-
+  actions: write
+  contents: read
+  
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
