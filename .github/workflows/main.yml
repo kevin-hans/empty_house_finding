@@ -16,22 +16,23 @@ jobs:
   call-callee:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Check time range
-      run: |
-        # Get the current hour in UTC
-        HOUR=$(date +"%H")
-        
-        # Check if outside 8 AM to 10 PM UTC range
-        if [ $HOUR -lt 8 ] || [ $HOUR -gt 22 ]; then
-          echo "Current time is outside the schedule range. Exiting..."
-          exit 0
-        fi
-        
-        # If within range, the steps below will run
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      - name: Check time range
+        run: |
+          # Get the current hour in UTC
+          HOUR=$(date +"%H")
+          
+          # Check if outside 8 AM to 10 PM UTC range
+          if [ $HOUR -lt 8 ] || [ $HOUR -gt 22 ]; then
+            echo "Current time is outside the schedule range. Exiting..."
+            exit 0
+          fi
+          
+          # If within range, the steps below will run
 
-    - name: Call Callee Workflow
-      uses: ./.github/workflows/target.yml
-      with:
-        param1: "Hello"
-        param2: "World"
+      - name: Call Callee Workflow
+        uses: .github/workflows/target.yml
+        with:
+          param1: "Hello"
+          param2: "World"
