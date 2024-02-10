@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: check available house(2).
+name: check available houses(2).
 
 # Controls when the workflow will run
 on:
@@ -25,10 +25,11 @@ jobs:
           # Get the current hour in UTC
           HOUR=$(date +"%H")
           
-          # Check if outside 8 AM to 10 PM UTC range
-          if [ $HOUR -lt 8 ] || [ $HOUR -gt 22 ]; then
+          # Check if outside 8 AM to 10 PM JST range
+          # UTC 23 PM to 13 PM 
+          if [ $HOUR -lt 13 ] || [ $HOUR -gt 23 ]; then
             echo "Current time is outside the schedule range. Exiting..."
-            # exit 0
+            exit 0
           fi
           
           # If within range, the steps below will run
