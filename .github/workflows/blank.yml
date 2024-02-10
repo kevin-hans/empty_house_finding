@@ -48,9 +48,11 @@ jobs:
           response=$(curl --silent curl --location "https://jhomes.to-kousya.or.jp/search/jkknet/service/akiyaJyokenDirect" --header "Content-Type: application/x-www-form-urlencoded" --data-urlencode "redirect=true" --data-urlencode "url=https%3A%2F%2Fjhomes.to-kousya.or.jp%2Fsearch%2Fjkknet%2Fservice%2FakiyaJyokenDirect" --data-urlencode "sen_flg=1" --data-urlencode "jutaku_name=30B330FC30B730E430CF30A430E030DF30C930EA30E830F330C130E830A630E1")
           # echo "::set-output name=status_code::$response"
           echo "----------------------------------"
-          echo "$response"
+          response2=$(echo "$response" | iconv -f SHIFT_JIS -t UTF-8)
           echo "----------------------------------2222"
-          echo "$response" | grep -q "空室はございませんでした"
+          echo "$response2"
+          echo "----------------------------------3333"
+          echo "$response2" | grep -q "空室はございませんでした"
           # Check the exit status of grep to determine if the word was found
           if [ $? -eq 0 ]; then
             echo "The word 'Success' was found in the response."
