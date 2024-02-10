@@ -92,8 +92,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           filename: .github/other-template.md
-          houseName: "${{ github.event.inputs.houseName }}"
-          homePage: "${{ github.event.inputs.homePage }}"
+          data: |
+            {
+              houseName: "${{ github.event.inputs.houseName }}",
+              homePage: "${{ github.event.inputs.homePage }}"
+            }
+
           
       - name: just log when not found.
         if: ${{ env.AVAILABLE_HOUSE_FOUND == 'NO' }} 
