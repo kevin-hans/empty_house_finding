@@ -43,27 +43,39 @@ jobs:
       - name: Make request and capture response
         id: curl_request
         run: |
-          response=$(curl -s -o response.txt -w "%{http_code}" curl --location "https://jhomes.to-kousya.or.jp/search/jkknet/service/akiyaJyokenDirect" --header "Content-Type: application/x-www-form-urlencoded" --data-urlencode "redirect=true" --data-urlencode "url=https%3A%2F%2Fjhomes.to-kousya.or.jp%2Fsearch%2Fjkknet%2Fservice%2FakiyaJyokenDirect" --data-urlencode "sen_flg=1" --data-urlencode "jutaku_name=30B330FC30B730E430CF30A430E030DF30C930EA30E830F330C130E830A630E1")
-          echo "::set-output name=status_code::$response"
-          echo "----------------------"
-          ls -al
-          # cat response.txt
-          echo "::set-output name=body::$(<response.txt)"
-  
-      - name: Check response
-        run: |
-          if [[ "${{ steps.curl_request.outputs.status_code }}" == "200" ]]; then
-            echo "Request was successful"
-            echo "Response body: ${{ steps.curl_request.outputs.body }}"
+          echo "=================================="
+          response=$(curl --silent curl --location "https://jhomes.to-kousya.or.jp/search/jkknet/service/akiyaJyokenDirect" --header "Content-Type: application/x-www-form-urlencoded" --data-urlencode "redirect=true" --data-urlencode "url=https%3A%2F%2Fjhomes.to-kousya.or.jp%2Fsearch%2Fjkknet%2Fservice%2FakiyaJyokenDirect" --data-urlencode "sen_flg=1" --data-urlencode "jutaku_name=30B330FC30B730E430CF30A430E030DF30C930EA30E830F330C130E830A630E1")
+          # echo "::set-output name=status_code::$response"
+          echo "----------------------------------"
+          echo "$response" | grep -q "空室はございませんでした"
+          # Check the exit status of grep to determine if the word was found
+          if [ $? -eq 0 ]; then
+            echo "The word 'Success' was found in the response."
+            # You can add steps here to handle the success case
           else
-            echo "Request failed with status ${{ steps.curl_request.outputs.status_code }}"
+            echo "The word 'Success' was not found in the response."
+            # Optional: Add steps here to handle the failure case
+            exit 1 # Causes the step to fail if the word is not found
           fi
 
+          ls -al
+          # cat response.txt
+          # echo "::set-output name=body::$(<response.txt)"
+  
+      # - name: Check response
+      #   run: |
+      #     if [[ "${{ steps.curl_request.outputs.status_code }}" == "200" ]]; then
+      #       echo "Request was successful"
+      #       echo "Response body: ${{ steps.curl_request.outputs.body }}"
+      #     else
+      #       echo "Request failed with status ${{ steps.curl_request.outputs.status_code }}"
+      #     fi
+
           
-      - name: Create an Issue
-        uses: JasonEtco/create-an-issue@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          filename: .github/other-template.md
+      # - name: Create an Issue
+      #   uses: JasonEtco/create-an-issue@v2
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     filename: .github/other-template.md
           
