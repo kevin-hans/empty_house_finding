@@ -4,8 +4,8 @@ name: check available house.
 
 # Controls when the workflow will run
 on:
-  # schedule:
-  #   - cron: "*/10 * * * *" 
+  schedule:
+    - cron: "*/10 * * * *" 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -38,13 +38,29 @@ jobs:
       #     param2: "World"
 
   call-callee:
-    name: Call Callee Workflow
-    uses: ./.github/workflows/target.yml
-    with:
-      name: "John Doe"
-      age: 30
-    secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Trigger Callee Workflow for Each JSON Item
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          jq -c '.[]' .github/input_parameter.json | while read i; do
+            TYPE=$(echo $i | jq -r '.type')
+            ENCODED_HOUSE_NAME=$(echo $i | jq -r '.encodedHouseName')
+            HOUSE_NAME=$(echo $i | jq -r '.houseName')
+            GREP_KEY=$(echo $i | jq -r '.grepKey')
+            
+            # Use GitHub API to trigger the workflow_dispatch event
+            curl \
+              -X POST \
+              -H "Authorization: token $GITHUB_TOKEN" \
+              -H "Accept: application/vnd.github.v3+json" \
+              https://api.github.com/repos/${{ github.repository }}/actions/workflows/target2.yml/dispatches \
+              -d '{"ref":"main", "inputs": {"type":"'"$TYPE"'", "houseName":"'"$HOUSE_NAME"'", "encodedHouseName":"'"$ENCODED_HOUSE_NAME"'", "grepKey":"'"$GREP_KEY"'"}}'
+          done
 
 
   # call_reusable_workflow:
