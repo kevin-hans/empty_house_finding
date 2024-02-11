@@ -29,7 +29,7 @@ jobs:
           
           # Check if outside 8 AM to 10 PM JST range
           # UTC 23 PM to 13 PM
-          if [ $HOUR -lt 22 ] && [ $HOUR -gt 13 ]; then
+          if [ $HOUR -lt 22 ] && [ $HOUR -gt 14 ]; then
             echo "Current time is outside the schedule range. Exiting..."
             exit 1
           fi
