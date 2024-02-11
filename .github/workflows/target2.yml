@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: check single house-"${{ github.event.inputs.houseName }}"
+name: check single house
 
 on:
   workflow_dispatch:

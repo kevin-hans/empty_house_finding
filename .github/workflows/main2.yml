@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: check available houses(2).
+name: check available houses.
 
 # Controls when the workflow will run
 on:
