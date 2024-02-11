@@ -60,9 +60,21 @@ jobs:
         id: curl_request_ur
         if: ${{ github.event.inputs.type == 'ur' }}
         run: |
-          response=$(curl --silent curl --location "${{ github.event.inputs.homePage }}" )
+          extracted_string=$(echo "${{ github.event.inputs.homePage }}" | grep -oP "\d+_\d+\.html" | sed 's/.html$//')
+          echo $extracted_string
+          # Replace '_' with ',' to facilitate splitting
+          formatted_input=$(echo "$extracted_string" | sed 's/_/,/; s/\(.*\)\(.\)$/\1,\2/')
+
+          # Use IFS to split the formatted input and assign to variables
+          IFS=',' read -r shisya danchi shikibetu <<< "$formatted_input"
+
+          response=$(curl --silent curl --location "https://chintai.sumai.ur-net.go.jp/chintai/api/bukken/search/bukken_main/" --header "Content-Type: application/x-www-form-urlencoded" --data-urlencode "shisya=$shisya" --data-urlencode "danchi=$danchi" --data-urlencode "shikibetu=$shikibetu")
           echo $response
-          if echo "$response" | grep -q "${{ github.event.inputs.grepKey }}"; then
+          
+          count=$(echo "$response" | jq '.count')
+
+          # Check if 'count' is 0
+          if [ "$count" -eq 0 ]; then
             echo "AVAILABLE_HOUSE_FOUND=NO"
             echo "AVAILABLE_HOUSE_FOUND=NO" >> $GITHUB_ENV
           else
