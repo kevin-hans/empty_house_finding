@@ -61,7 +61,7 @@ jobs:
         if: ${{ github.event.inputs.type == 'ur' }}
         run: |
           response=$(curl --silent curl --location "${{ github.event.inputs.homePage }}" )
-          
+          echo $response
           if echo "$response" | grep -q "${{ github.event.inputs.grepKey }}"; then
             echo "AVAILABLE_HOUSE_FOUND=NO"
             echo "AVAILABLE_HOUSE_FOUND=NO" >> $GITHUB_ENV
