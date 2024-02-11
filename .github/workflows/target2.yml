@@ -42,7 +42,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Make request and capture response(jkk)
-        id: curl_request
+        id: curl_request_jkk
         if: ${{ github.event.inputs.type == 'jkk' }}
         run: |
           response=$(curl --silent curl --location "https://jhomes.to-kousya.or.jp/search/jkknet/service/akiyaJyokenDirect" --header "Content-Type: application/x-www-form-urlencoded" --data-urlencode "redirect=true" --data-urlencode "url=https://jhomes.to-kousya.or.jp/search/jkknet/service/akiyaJyokenDirect" --data-urlencode "sen_flg=1" --data-urlencode "jutaku_name=${{ github.event.inputs.encodedHouseName }}")
@@ -57,7 +57,7 @@ jobs:
           fi
 
       - name: Make request and capture response(ur)
-        id: curl_request
+        id: curl_request_ur
         if: ${{ github.event.inputs.type == 'ur' }}
         run: |
           response=$(curl --silent curl --location "${{ github.event.inputs.homePage }}" )
