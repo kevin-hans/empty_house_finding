@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: check single house(2) 
+name: check single house-"${{ github.event.inputs.houseName }}"
 
 on:
   workflow_dispatch:
@@ -41,13 +41,28 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: Make request and capture response
+      - name: Make request and capture response(jkk)
         id: curl_request
+        if: ${{ github.event.inputs.type == 'jkk' }}
         run: |
           response=$(curl --silent curl --location "https://jhomes.to-kousya.or.jp/search/jkknet/service/akiyaJyokenDirect" --header "Content-Type: application/x-www-form-urlencoded" --data-urlencode "redirect=true" --data-urlencode "url=https://jhomes.to-kousya.or.jp/search/jkknet/service/akiyaJyokenDirect" --data-urlencode "sen_flg=1" --data-urlencode "jutaku_name=${{ github.event.inputs.encodedHouseName }}")
           response2=$(echo "$response" | iconv -f SHIFT_JIS -t UTF-8)
           
           if echo "$response2" | grep -q "${{ github.event.inputs.grepKey }}"; then
+            echo "AVAILABLE_HOUSE_FOUND=NO"
+            echo "AVAILABLE_HOUSE_FOUND=NO" >> $GITHUB_ENV
+          else
+            echo "AVAILABLE_HOUSE_FOUND=YES"
+            echo "AVAILABLE_HOUSE_FOUND=YES" >> $GITHUB_ENV
+          fi
+
+      - name: Make request and capture response(ur)
+        id: curl_request
+        if: ${{ github.event.inputs.type == 'ur' }}
+        run: |
+          response=$(curl --silent curl --location "${{ github.event.inputs.homePage }}" )
+          
+          if echo "$response" | grep -q "${{ github.event.inputs.grepKey }}"; then
             echo "AVAILABLE_HOUSE_FOUND=NO"
             echo "AVAILABLE_HOUSE_FOUND=NO" >> $GITHUB_ENV
           else
