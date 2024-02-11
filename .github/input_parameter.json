@@ -94,5 +94,14 @@
         "grepKey": "ご案内できるお部屋がございません",
         "grepKeyExcluded": "1LDK",
         "homePage": "https://www.ur-net.go.jp/chintai/kanto/tokyo/20_3450.html"
+    },
+    {
+        "type": "ur",
+        "houseName": "UR・江東区・ヴェッセル木場南★",
+        "encodedHouseName": "none",
+        "grepKey": "ご案内できるお部屋がございません",
+        "grepKeyExcluded": "1LDK",
+        "homePage": "https://www.ur-net.go.jp/chintai/kanto/tokyo/20_5820.html"
     }
+]
 ]
