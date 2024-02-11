@@ -31,7 +31,7 @@ jobs:
           # UTC 22 PM to 13 PM(14,15)
           if [ $HOUR -lt 22 ] && [ $HOUR -gt 14 ]; then
             echo "Current time is outside the schedule range. Exiting..."
-            # exit 1
+            exit 1
           fi
           
   call-callee:
