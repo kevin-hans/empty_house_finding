@@ -73,13 +73,26 @@ jobs:
           
           count=$(echo "$response" | jq '.count')
 
-          # Check if 'count' is 0
-          if [ "$count" -eq 0 ]; then
+          MESSAGE_KEY='Message'
+          # Use jq with the has() function to check if the key exists
+          ERROR_HAPPEND=$(echo $response | jq --arg key "$MESSAGE_KEY" 'has($MESSAGE_KEY)')
+
+          echo "count: ${count}, ERROR_HAPPEND: ${ERROR_HAPPEND}"
+
+          # 異常発生する場合
+          if [ "$ERROR_HAPPEND" = "true" ]; then
             echo "AVAILABLE_HOUSE_FOUND=NO"
             echo "AVAILABLE_HOUSE_FOUND=NO" >> $GITHUB_ENV
           else
-            echo "AVAILABLE_HOUSE_FOUND=YES"
-            echo "AVAILABLE_HOUSE_FOUND=YES" >> $GITHUB_ENV
+            # 異常発生していない場合
+            # Check if 'count' is 0
+            if [ "$count" -eq 0 ]; then
+              echo "AVAILABLE_HOUSE_FOUND=NO"
+              echo "AVAILABLE_HOUSE_FOUND=NO" >> $GITHUB_ENV
+            else
+              echo "AVAILABLE_HOUSE_FOUND=YES"
+              echo "AVAILABLE_HOUSE_FOUND=YES" >> $GITHUB_ENV
+            fi
           fi
 
       - name: Create an Issue when found.
