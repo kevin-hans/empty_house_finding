@@ -75,7 +75,7 @@ jobs:
 
           MESSAGE_KEY='Message'
           # Use jq with the has() function to check if the key exists
-          ERROR_HAPPEND=$(echo $response | jq --arg key "$MESSAGE_KEY" 'has($MESSAGE_KEY)')
+          ERROR_HAPPEND=$(echo $response | jq --arg key "$MESSAGE_KEY" 'has($key)')
 
           echo "count: ${count}, ERROR_HAPPEND: ${ERROR_HAPPEND}"
 
