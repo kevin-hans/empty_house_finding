@@ -1,26 +1,18 @@
 [
     {
         "type": "jkk",
-        "houseName": "JKK・墨田区・コーシャハイム緑四丁目★★★★★",
-        "encodedHouseName": "30B330FC30B730E430CF30A430E030DF30C930EA30E830F330C130E830A630E1",
+        "houseName": "JKK・江東区・トミンハイム古石場一丁目★★★★",
+        "encodedHouseName": "30C830DF30F330CF30A430E030D530EB30A430B730D030A430C430C130E830A630E1",
         "grepKey": "空室はございませんでした",
         "grepKeyExcluded": "1LDK",
-        "homePage": "https://www.to-kousya.or.jp/chintai/reco/kh_midori4.html"
+        "homePage": "https://www.to-kousya.or.jp/chintai/reco/th_furuishiba1.html"
     },
     {
         "type": "jkk",
-        "houseName": "JKK・墨田区・トミンハイム横川一丁目★★★★",
-        "encodedHouseName": "30C830DF30F330CF30A430E030E830B330AB30EF30A430C430C130E830A630E1",
+        "houseName": "JKK・江東区・トミンハイム古石場二丁目★★★★",
+        "encodedHouseName": "30C830DF30F330CF30A430E030D530EB30A430B730D030CB30C130E830A630E1",
         "grepKey": "空室はございませんでした",
         "grepKeyExcluded": "1LDK",
-        "homePage": "https://www.to-kousya.or.jp/chintai/reco/th_yokokawa1.html"
-    },
-    {
-        "type": "jkk",
-        "houseName": "JKK・千代田区・コーシャハイム神田★★★★",
-        "encodedHouseName": "30B330FC30B730E430CF30A430E030AB30F330C0",
-        "grepKey": "空室はございませんでした",
-        "grepKeyExcluded": "1LDK",
-        "homePage": "https://www.to-kousya.or.jp/chintai/reco/kh_kanda.html"
+        "homePage": "https://www.to-kousya.or.jp/chintai/reco/th_furuishiba2.html"
     }
 ]
