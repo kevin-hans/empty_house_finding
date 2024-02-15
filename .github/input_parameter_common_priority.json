@@ -1,22 +1,6 @@
 [
     {
         "type": "jkk",
-        "houseName": "JKK・江東区・トミンハイム古石場一丁目★★★★",
-        "encodedHouseName": "30C830DF30F330CF30A430E030D530EB30A430B730D030A430C430C130E830A630E1",
-        "grepKey": "空室はございませんでした",
-        "grepKeyExcluded": "1LDK",
-        "homePage": "https://www.to-kousya.or.jp/chintai/reco/th_furuishiba1.html"
-    },
-    {
-        "type": "jkk",
-        "houseName": "JKK・江東区・トミンハイム古石場二丁目★★★★",
-        "encodedHouseName": "30C830DF30F330CF30A430E030D530EB30A430B730D030CB30C130E830A630E1",
-        "grepKey": "空室はございませんでした",
-        "grepKeyExcluded": "1LDK",
-        "homePage": "https://www.to-kousya.or.jp/chintai/reco/th_furuishiba2.html"
-    },
-    {
-        "type": "jkk",
         "houseName": "JKK・江東区・コーシャハイム亀戸七丁目★★★",
         "encodedHouseName": "30B330FC30B730E430CF30A430E030AB30E130A430C930CA30CA30C130E830A630E1",
         "grepKey": "空室はございませんでした",
