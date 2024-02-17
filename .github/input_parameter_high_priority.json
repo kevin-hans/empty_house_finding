@@ -22,5 +22,13 @@
         "grepKey": "空室はございませんでした",
         "grepKeyExcluded": "1LDK",
         "homePage": "https://www.to-kousya.or.jp/chintai/reco/kt_tsukuda.html"
+    },
+    {
+        "type": "jkk",
+        "houseName": "JKK・江東区・コーシャハイム南砂駅前★★★★",
+        "encodedHouseName": "30B330FC30B730E330CF30A430E030DF30CA30DF30B930CA30A830AD30DE30A8",
+        "grepKey": "空室はございませんでした",
+        "grepKeyExcluded": "1LDK",
+        "homePage": "https://www.to-kousya.or.jp/chintai/reco/kh_minamisunaekimae.html"
     }
 ]
